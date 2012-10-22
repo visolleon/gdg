@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5 Game Development</title>
+    <meta charset='utf-8'>
+    <meta name='author' content='Visolleon'>
+    <meta name='weibo' content='http://weibo.com/visolleon'>
+    <meta name='blog' content='http://www.cnblogs.com/visolleon'>
+    <link rel="stylesheet" type="text/css" href="html5.css">
+    <script src='slides.js'></script>
+    <script src='canvas.js'></script>
+  </head>
+  
+  <body style='display: none'>
+    <section class='slides layout-regular template-default'>      
+      <article class='biglogo'>
+        <div style="text-align:center; padding-top:120px;">
+          <img src="images/HTML5_Logo.png" width="240">
+        </div>
+        <div id="html5logos">
+          <div><img src="images/3d.jpg"></div>
+          <div><img src="images/connectivety.jpg"></div>
+          <div><img src="images/device.jpg"></div>
+          <div><img src="images/multimedia.jpg"></div>
+          <div><img src="images/offlinestorage.jpg"></div>
+          <div><img src="images/performance.jpg"></div>
+          <div><img src="images/semantic.jpg"></div>
+          <div><img src="images/styling.jpg"></div>
+        </div>
+      </article>
+
+      <article>
+        <h1>
+          HTML5 Game Development
+          <br>
+        </h1>
+        <p>
+          Yu Xiang Wang
+          <br>
+          Oct 14, 2012
+        </p>
+      </article>
+      
+      <article>
+        <h3>
+          网页游戏介绍
+        </h3>
+        <p>
+          网页游戏，又称Web游戏、Web Game、页游等。是基于浏览器来开发的一种游戏，主要特点有：
+                  </p>
+          <ul class="build">
+            <li>
+              依赖浏览器
+            </li>
+            <li>
+              无需下载客户端
+            </li>
+            <li>
+              程序云端更新
+            </li>
+            <li>
+              操作简单，容易上手
+            </li>
+            <li>
+              面向大众，非专业化
+            </li>
+            <li>
+              资源片段化
+            </li>
+            <li>
+              混合开发技术
+            </li>
+          </ul>
+
+      </article>
+
+      <article>
+        <h3>
+          网页游戏开发介绍
+        </h3>
+        <p>
+          在HTML5以前，HTML技术基本上没有太多丰富的接口和标准，导致产生很多的利用第三方插件开发的网页游戏，
+          <br>现在基本上日常我们所说的webgame，大部分都是只flash游戏，也正是没有HTML5这些标准，FLASH在以前的PC系统中有着举足轻重的地位。
+          <br>可以开发webgame的技术有：
+        </p>
+        <ul class="build">
+          <li>
+            FLASH : Adobe
+          </li>
+          <li>
+            Silverlight : 微软出的类似Flash的浏览器插件
+          </li>
+          <li>
+            O3D : Google出的一种基于网页的可控3D标准
+          </li>
+          <li>
+            SVG : W3C的标准，性能还是有点薄弱
+          </li>
+          <li>
+            还有很多冷门的....
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>
+          HTML5游戏开发技术
+        </h3>
+        <p>
+          HTML5技术是在有浏览器对标准的支持的前提下，使用HTML标记语言 、JavaScript语言 、CSS布局等混合而成的一种开发技术。
+          
+        </p>
+
+      </article>
+
+      <article>
+        <h3>
+          使HTML5成为可以开发web游戏的可能的技术点有：
+        </h3>
+        <ul class="build">
+          <li>
+            Canvas : 画布，可以在canvas上画很多以前做不到的东西
+          </li>
+          <li>
+            Storage : Web SQL Database / Web Storage / Session Storage
+          </li>
+          <li>
+            Offline ：web离线缓存技术
+          </li>
+          <li>
+            WebSocket : web与服务器Socket通讯
+          </li>
+          <li>
+            Multimedia ：Audio / Video
+          </li>
+          <li>
+            WebWorker ：多线程执行JavaScript程序，对web应用程序性能有很大的提升
+          </li>
+          <li>
+            CSS3 ： 在HTML5技术发展的同时，CSS3也不甘落后，有相当强悍的发展
+          </li>
+        </ul>
+        <div class="build">
+          <div>这次主要分享的是Canvas技术。</div>
+        </div>
+      </article>
+
+      <article class='smaller'>
+        <h3>
+          Canvas绘图开发 - 准备
+        </h3>
+
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;!--定义canvas的标记语句--&gt;
+  &lt;canvas id="canvas" width="800" height="600"&gt;
+    你的浏览器不支持canvas元素。
+  &lt;/canvas&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+      </pre>
+        
+      <pre>
+&lt;script type='text/javascript'&gt;
+
+  //获取canvas的DOM
+  var canvas = document.getElementById('canvas');
+
+  //获取canvas的context对象
+  var ctx = canvas.getContext("2d");  
+
+  // TODO: 现在可以对canvas的context进行操作了
+
+&lt;/script&gt;
+      </pre>
+      </article>
+
+      <article class='smaller'>
+        <h3>
+          Canvas绘图开发
+        </h3>
+        <br>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(0)">Rect</a>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(1)">Cirycle</a>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(2)">Beizer</a>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(3)">ColorStyle</a>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(4)">Image</a>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(5)">CreatePattern</a>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(6)">Text</a>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(7)">Animation</a>
+<a class="large button bblue left" onselectstart="return false;" onclick="showCode(8)">Clear</a>
+<pre id="canvasscript">
+</pre>
+<script>
+showCode(0);
+</script>
+      
+      <canvas id="canvasexample" width="770" height="320"></canvas>
+      </article>
+      
+      <article>
+        <h3>
+          HTML5游戏实例开发
+        </h3>
+        
+        <ul class="build">
+          <li>
+            游戏引擎 ： <a href="https://github.com/Visolleon/GameBase" target="_blank">https://github.com/Visolleon/GameBase</a>
+          </li>
+          <li>
+            开心鬼大作战 ：<a href="http://happyghost.sinaapp.com" target="_blank">http://happyghost.sinaapp.com</a>
+          </li>
+          <li>
+            泡泡堂 ： <a href="http://visolleon.sinaapp.com" target="_blank">http://visolleon.sinaapp.com</a>
+          </li>
+          <li>
+            吃豆人游戏 ： 详细开发介绍
+          </li>
+        </ul>
+      </article>
+      
+      <article>
+        <h3>
+          DART语言介绍
+        </h3>
+        <p>
+            Dart是谷歌开发的用于浏览器编程的一门语言，在web富应用发展到今天，前端开发显得异常的重要，
+            而目前浏览器支持的语言只有JavaScript（当然这里不讨论flash等第三方插件），但JavaScript语言本身存在一些缺陷，
+            因此为了解决JavaScript语言本身的缺陷，各大有实力的浏览器商家都推出自己的前端语言：<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;微软推出了：TypeScript语言<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Google推出了： DART语言<br>
+            等等...<br>
+            <br>
+            虽然我们反感这些厂商都各自推出自己的开发语言，但是不得不承认，在做比较大的WebApp的时候，总是会遇到语言本身的缺陷问题。
+        </P>
+      </article>
+      
+      <article>
+        <h3>
+          DART开发语言简介
+        </h3>
+        <p>
+          官方网站： <a href="http://www.dartlang.org" target="_blank">http://www.dartlang.org</a>
+        </p>
+        <p>
+          文档教程： <a href="http://www.dartlang.org/docs/language-tour" target="_blank">http://www.dartlang.org/docs/language-tour</a>
+        </p>
+        <p>
+          开发工具： DART Editor
+        </p>
+        <p>
+          DART虚拟机 ： 目前开发工具DART Editor中自带有DART虚拟机的Chromium浏览器
+        </p>
+      </article>
+
+      <article>
+        <h3>
+          main方法
+        </h3>
+ <pre>
+
+// This is where the app starts executing.
+main() {
+  var number = 42;           // Declare and initialize a variable.
+  printNumber(number);       // Call a function.
+}
+
+// Define a function.
+printNumber(num smallNumber) {
+  assert(smallNumber < 100);            // Check our assumptions.
+  print("The number is $smallNumber."); // Print to the console.
+}
+
+
+</pre>
+<p>
+  有main方法，这是入口，有点像C语言吧！
+</p>
+<div class='source'>
+  Code from: http://www.dartlang.org/docs/language-tour
+</div>
+      </article>
+
+      <article>
+        <h3>
+          定义变量
+        </h3>
+<pre>
+var name = 'Bob';
+int lineCount;
+String name = 'Bob';
+final name = 'Bob'; // Or: final String name = 'Bob';
+name = 'Alice';     // ERROR
+</pre>
+<p>
+  var 定义变量，又有点类似JavaScript...<br><br>不过又有int, String等类型....
+  <br><br>
+  DART语言内置类型： String, int, bool, list ,  map
+</p>
+<div class='source'>
+  Code from: http://www.dartlang.org/docs/language-tour
+</div>
+      </article>
+
+      <article>
+        <h3>
+          函数
+        </h3>
+ <pre>
+
+String say(String from, String msg) => "$from says $msg";
+
+
+</pre>
+这一句话就是一个方法，这很像C#里的lambda表达式！<br><br>
+上面的代码等价于：
+<pre>
+say(from, msg) {
+  return "$from says $msg";
+}
+
+</pre>
+<p>
+  有点小意思了吧...
+</p>
+<div class='source'>
+  Code from: http://www.dartlang.org/docs/language-tour
+</div>
+      </article>
+
+      <article>
+        <h3>
+          可选参数
+        </h3>
+ <pre>
+
+String say(String from, String msg, [String device]) {
+  var result = "$from says $msg";
+  if (device != null) {
+    result = "$result with a $device";
+  }
+  return result;
+}
+
+
+</pre>
+
+个人觉得这个，JavaScript比DART要爽一些，JavaScript参数可以随便写；烦了，不写也行...
+
+
+<div class='source'>
+  Code from: http://www.dartlang.org/docs/language-tour
+</div>
+      </article>
+      
+            <article>
+        <h3>
+          异常处理
+        </h3>
+ <pre>
+throw new IllegalArgumentException('Value must be greater than zero');
+throw "Out of llamas!";
+
+</pre>
+
+抛出异常...<br>
+
+<pre>
+try {
+    breedMoreLlamas();
+} on OutOfLlamasException catch (e) {  // A specific exception
+    buyMoreLlamas();
+} catch (e) {                       // No specified type, handles all
+    print("Something really unknown: $e");
+} finally {
+  cleanLlamaStalls();  // Then clean up.
+}
+</pre>
+捕获异常，处理异常
+
+
+<div class='source'>
+  Code from: http://www.dartlang.org/docs/language-tour
+</div>
+      </article>
+
+<article>
+<h3>
+  类
+</h3>
+
+ <pre>
+class Point {
+  num x, y;
+}
+
+main() {
+  var point = new Point();
+  point.x = 4;             // Use the setter method for x.
+  assert(point.x == 4);    // Use the getter method for x.
+  assert(point.y == null); // Values default to null.
+}
+</pre>
+
+啊，类，是不是觉得JavaScript很缺这玩意儿...
+
+
+
+<div class='source'>
+Code from: http://www.dartlang.org/docs/language-tour
+</div>
+</article>
+
+<article>
+<h3>
+  类的构造函数
+</h3>
+
+ <pre>
+class Point {
+  num x, y;
+  Point(num x, num y) {
+    // There's a better way to do this, stay tuned.
+    this.x = x;
+    this.y = y;
+  }
+}
+</pre>
+简化点：
+<pre>
+class Point {
+  num x, y;
+  // Syntactic sugar for this.x = x and this.y = y
+  Point(this.x, this.y);
+}
+</pre>
+<div class='source'>
+Code from: http://www.dartlang.org/docs/language-tour
+</div>
+</article>
+
+<article>
+<h3>
+  继承
+</h3>
+
+ <pre>
+class Person {
+  Person.fromJson(Map data) {
+    print('in Person');
+  }
+}
+
+class Employee extends Person {
+  // Person does not have a default constructor;
+  // you must call super.fromJson(data).
+  Employee.fromJson(Map data) : super.fromJson(data) {
+    print('in Employee');
+  }
+}
+
+</pre>
+继承，都懂得...
+
+<div class='source'>
+Code from: http://www.dartlang.org/docs/language-tour
+</div>
+</article>
+
+<article class="smaller">
+<h3>
+  接口
+</h3>
+
+ <pre>
+interface Hashable {
+  int hashCode();
+}
+class Point implements Hashable {
+  num x, y;
+
+  // Required by Hashable.
+  int hashCode() {
+    int result = 17;
+    result = 37 * result + x.hashCode();
+    result = 37 * result + y.hashCode();
+    return result;
+  }
+  
+  // Always implement operator== if the class implements Hashable.
+  bool operator==(other) {
+    if (other == null) return false;
+    if (other === this) return true;
+    return (other.x == x && other.y == y);
+  }
+}
+</pre>
+跟Java很像，后面还有一些面向对象方面的，就不多说了...
+<div class='source'>
+Code from: http://www.dartlang.org/docs/language-tour
+</div>
+</article>
+
+<article class="smaller">
+<h3>
+  #import | #source | #library
+</h3>
+
+ <pre>
+#library('slider_sample');           // Declare that this is a library.
+
+#import('dart:html');                // It uses the html library
+#import('../ui_lib/view/view.dart'); // and a view library.
+
+#source('SliderSample.dart');        // Grab the code from SliderSample.dart.
+</pre>
+
+对JavaScript来说，这玩意儿是好东西...
+<br>
+<br>
+#libray ： 定义一个程序包或者说命名空间也行<br>
+#import ： 引用一个程序包<br>
+#source ： 引入一个现有的包程序，将程序直接引入本包内编译<br>
+<br>
+演示例子....
+<div class='source'>
+Code from: http://www.dartlang.org/docs/language-tour
+</div>
+</article>
+
+      <article>
+        <div class="build">
+        <q>
+          感谢各位的捧场，希望以后能与大家多多交流, Thank you !
+        </q>
+        <div class='author'>
+          Visolleon
+        </div>
+        <div>
+      </article>
+      
+
+
+    </section>
+
+  </body>
+</html>
