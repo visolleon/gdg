@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Pacman</title>
+    <style>
+        html, body{
+            margin:0;
+            padding:0;
+            background-color: #ccc;
+        }
+        #gamecontainer{
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="gamecontainer">
+        <canvas id="canvasmain" width="800" height="600"></canvas>
+    </div>
+    <script src="scripts/init.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        init.LoadScripts(
+            [
+                'scripts/gamebase.js', 
+                'scripts/map.js', 
+                'scripts/events.js', 
+                'scripts/pacman.js',
+                'scripts/main.js'
+            ],
+            function () {
+                var game = new Game({ id : 'canvasmain' });
+                main.start(game);
+            }
+        );
+    </script>
+</body>
+</html>
