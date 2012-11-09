@@ -1,0 +1,10 @@
+html,body {
+	margin: 0;
+	padding: 0;
+	background-color: #00273F;
+	overflow: hidden;
+}
+#gamecontainer {
+	width : 100%;
+	text-align: center;
+}
